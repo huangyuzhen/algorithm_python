@@ -11,7 +11,7 @@ def partition(L, left, right):
     # 基准元素
     anchor = L[left]
     while i <= j:
-        while L[i] <= anchor and i <= right:
+        while i <= right and L[i] <= anchor:
             i += 1
         while L[j] > anchor:
             j -= 1
