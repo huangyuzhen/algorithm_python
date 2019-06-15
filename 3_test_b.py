@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 def matrixSearch(A, iLow, iHigh, jLeft, jRight, x):
     if iLow > iHigh or jLeft > jRight:
@@ -34,9 +36,12 @@ A = [
     [1, 2, 5]
 ]
 
-k = 5
-a = search(A, k)
-if a:
-    print(k, a)
-else:
-    print(k, "not found")
+
+x = input("input number: ")
+if x != '':
+    x = int(x)
+    a = search(A, x)
+    if a:
+        print("true")
+    else:
+        print("false")

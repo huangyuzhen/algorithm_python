@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 def calcLuckyNumber(x):
     resultSet = set()
     for i in range(30):
@@ -15,4 +18,3 @@ if x != '':
     if x > 0:
         result = calcLuckyNumber(x)
         print(len(result))
-        print(sorted(result))

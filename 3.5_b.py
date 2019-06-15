@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 '''
 楼梯有n阶，可以一步上1阶，2阶，3阶，问有多少种不同的走法。
 n<=1000000
@@ -15,4 +18,8 @@ def floor(n):
 
     return s
 
-print(floor(4))
+x = input("input number: ")
+if x != '':
+    x = int(x)
+    if x > 0:
+        print(floor(x))
