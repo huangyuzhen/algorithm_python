@@ -41,10 +41,16 @@ A = [65, 70, 75, 80, 85, 60, 55, 50, 45]
 j = 7
 
 
-print(sorted(A))
-print(A)
-
 for j in range(1,8):
     k = randomizedSelect(A, 0, len(A) -1, j)
     print(j, k)
 
+# with open("data.txt", "r") as f:
+#     lines = f.readlines()
+#     datas = list(map(int, lines))
+#     print(datas)
+
+
+# n = 200
+# d = randomizedSelect(datas, 0, len(datas)-1, n)
+# # print(d, sorted(datas)[n-1])
