@@ -16,7 +16,7 @@ for i in range(1, n+1):
         T[Len] = s
     else:
         for j in range(1,Len+1):
-            if s < T[j]:
+            if s <= T[j]:
                 T[j] = s
                 break
 
