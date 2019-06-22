@@ -29,6 +29,7 @@ def mergeReverse(L1, L2):
         for jj in range(j, length2):
             newL.append(L2[jj])
 
+    print (L1, L2, newL, crossPairs)
     return (crossPairs, newL)
 
 
