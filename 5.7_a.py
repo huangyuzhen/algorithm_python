@@ -21,7 +21,7 @@ def Dijkstra(linkMatrix, numV, beginV):
     preV[beginV] = -1
 
     selectV = beginV
-    for i in range(1, numV):
+    for _ in range(1, numV):
         for j in range(numV):
             newCost = lowLR[selectV] + linkMatrix[selectV][j]
             if visited[j] == 0 and newCost < lowLR[j]:
