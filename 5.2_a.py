@@ -10,15 +10,14 @@ def greedyEventSchedule(n, timeStart, timeFinish):
                 timeFinish[j], timeFinish[j+1] = timeFinish[j+1], timeFinish[j]
                 timeStart[j], timeStart[j+1] = timeStart[j+1], timeStart[j]
 
-    selected = 0
+    # 记录已安排活动的最后结束时间
+    lastFinishTime = 0
 
     s = []
-    s.append((timeStart[selected], timeFinish[selected]))
-
-    for i in range(1, n):
-        if timeStart[i] >= timeFinish[selected]:
-            selected = i
-            s.append((timeStart[selected], timeFinish[selected]))
+    for i in range(n):
+        if timeStart[i] >= lastFinishTime:
+            s.append((timeStart[i], timeFinish[i]))
+            lastFinishTime = timeFinish[i]
 
     return s
 
