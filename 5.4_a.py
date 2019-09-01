@@ -7,7 +7,6 @@ Value = (25, 24, 15)
 Weight = (18,15,10)
 
 
-
 def greedyKnapsack(n, capacity):
     itemList = []
     for i in range(n):
@@ -17,10 +16,7 @@ def greedyKnapsack(n, capacity):
         }
         itemList.append(item)
 
-    def sortByRate(a):
-        return a['v'] / a['w']
-
-    itemList.sort(key = sortByRate, reverse = True)
+    itemList.sort(key = lambda x: x['v'] / x['w'], reverse = True)
 
     answer = 0
     for i in range(n):
