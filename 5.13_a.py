@@ -1,5 +1,9 @@
-import time
-start = time.perf_counter()
+'''
+最小生成树
+Minimun Spinning Tree
+Kruskal算法
+'''
+
 class DisjointSet(dict):
     '''不相交集'''
 
@@ -8,8 +12,8 @@ class DisjointSet(dict):
             self[item] = item
         pass
 
-    def add(self, item):
-        self[item] = item
+    # def add(self, item):
+    #     self[item] = item
 
     def find(self, item):
         if self[item] != item:
@@ -18,6 +22,7 @@ class DisjointSet(dict):
 
     def unionset(self, item1, item2):
         self[item2] = self[item1]
+
 
 def Kruskal(nodes, edges):
     '''基于不相交集实现Kruskal算法'''
@@ -43,7 +48,7 @@ def Kruskal(nodes, edges):
     pass
 
 def main():
-    nodes = set(list('ABCDEFG'))
+    nodes = set('ABCDEFG')
     edges = [("A", "B", 7), ("A", "D", 5),
              ("B", "C", 8), ("B", "D", 9), ("B", "E", 7),
              ("C", "E", 5),
@@ -57,5 +62,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-end = time.perf_counter()   #结束计时
-print('Running time: %f seconds'%(end-start))  #程序运行时间
