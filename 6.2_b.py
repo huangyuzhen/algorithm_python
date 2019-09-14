@@ -12,8 +12,8 @@ V = {
     "E": ["C", "D", "G"],
     "F": ["E"],
     "G": [],
-    "H": "B",
-    "I": "H",
+    "H": ["B"],
+    "I": ["H"],
 }
 
 def dfs(V, node, visited):
@@ -40,6 +40,7 @@ def DFS(V):
                 initNode = k
                 break
 
+        print("initNode", initNode)
         dfs(V, initNode, Visited)
 
     return Visited

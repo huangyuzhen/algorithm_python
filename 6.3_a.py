@@ -1,29 +1,30 @@
 '''
-深度优先搜索
-后进先出的 LIFO stack
+广度优先搜索
+先进先出的 FIFO queue
 '''
 
 # 邻接表
 V = {
-    "A": ["F", "G"],
-    "B": ["A", "I"],
-    "C": ["A", "D"],
-    "D": ["C", "F"],
-    "E": ["C", "D", "G"],
-    "F": ["E"],
-    "G": [],
-    "H": ["B"],
-    "I": ["H"],
+    "A": ["B", "I"],
+    "B": ["A", "F"],
+    "C": ["D", "G", "H"],
+    "D": ["C"],
+    "E": ["F", "I"],
+    "F": ["B", "E", "G", "I"],
+    "G": ["C", "F", "H"],
+    "H": ["C", "G"],
+    "I": ["A", "E", "F"],
 }
 
-def dfs(V, initNode, visited):
-    stack = [initNode]
+def bfs(V, initNode, visited):
+    queue = [initNode]
 
     while True:
-        if len(stack) <= 0:
+        if len(queue) <= 0:
             return
 
-        node = stack.pop()
+        node = queue[0]
+        queue = queue[1:]
         if node in visited:
             # print("visited:", node)
             continue
@@ -33,9 +34,9 @@ def dfs(V, initNode, visited):
 
         sonNodes = V.get(node)
         if sonNodes:
-            for son in sonNodes[::-1]:
+            for son in sonNodes:
                 if son not in visited:
-                    stack.append(son)
+                    queue.append(son)
                 else:
                     # 已经访问过
                     # print("skip", node + son)
@@ -45,7 +46,7 @@ def dfs(V, initNode, visited):
             pass
 
 
-def DFS(V):
+def BFS(V):
     Visited = []
 
     while True:
@@ -58,8 +59,8 @@ def DFS(V):
                 break
 
         print("initNode", initNode)
-        dfs(V, initNode, Visited)
+        bfs(V, initNode, Visited)
 
     return Visited
 
-print(DFS(V))
+print(BFS(V))
