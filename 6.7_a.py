@@ -13,7 +13,7 @@ INDEX  = 1
 
 def loadingBFS():
     maxWt = 0
-    headNode = [0, -1]
+    headNode = (0, -1)
     queue = [headNode]
 
     while True:
@@ -33,11 +33,11 @@ def loadingBFS():
             weight  = node[WEIGHT]
             current = globalWeight[index]
 
-            # 当前物品装入,左自节点
-            queue.append([weight + current, index])
+            # 左子节点,当前物品装入
+            queue.append((weight + current, index))
 
-            # 当前物品不装,右自节点
-            queue.append([weight, index])
+            # 右子节点,当前物品不装入
+            queue.append((weight, index))
 
     return maxWt
 
