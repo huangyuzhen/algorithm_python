@@ -28,7 +28,7 @@ while lb < ub:
     else:
         ub = mid - 1
 
-print(lb * 0.01)
+print(lb, lb * 0.01)
 
 '''
 复杂度 O(log(n))

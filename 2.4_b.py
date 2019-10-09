@@ -1,6 +1,7 @@
 '''
 数组配对
 优化
+分桶
 '''
 
 A = list(range(1000))
@@ -10,9 +11,7 @@ n = len(A)
 iCount = 0
 
 # 分组
-B = []
-for i in range(k):
-    B.append(0)
+B = [0] * k
 
 for number in A:
     i = number % k
