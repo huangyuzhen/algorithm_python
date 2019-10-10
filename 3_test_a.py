@@ -14,8 +14,10 @@ def matrixSearch(A, x):
         if value == x:
             return True
         if value > x:
+            # (i,j)位置的数字比x大,(i,j)所在的行,右边的数都比x大，排除此行右边的所有数字
             i += 1
         else:
+            # (i,j)位置的数字比x小,(i,j)所在的列,下边的数都比x小，排除此列下边的所有数字
             j += 1
 
     return False
