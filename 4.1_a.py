@@ -19,9 +19,7 @@ A = [
 step = []
 opt = []
 for a in A:
-    l = []
-    for i in a:
-        l.append(0)
+    l = [0] * len(a)
     opt.append(l)
     step.append(l[:])
 
