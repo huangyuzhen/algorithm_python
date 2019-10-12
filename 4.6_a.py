@@ -28,7 +28,7 @@ W = {}
 for i in range(1, len(V)):
     for p in range(1, len(V[i])):
         key = (i, p)
-        if i == 1 and p == 1:
+        if i == 1:
             W[key] = 0
             continue
 
@@ -48,7 +48,7 @@ for i in range(1, len(V)):
                 dis = a
 
         W[key] = dis
-        print(key, dis)
+        print("point:", V[i][p], key, dis)
 
 
-# print(W)
+print(W)

@@ -26,7 +26,7 @@ Weight = {
 W = {}
 
 def We(i, p):
-    if i == 1 and p == 1:
+    if i == 1:
         W[(i,p)] = 0
         return 0
     dis = 999999
