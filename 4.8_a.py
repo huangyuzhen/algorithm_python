@@ -10,18 +10,24 @@ def maxSubString(X, Y):
 
     C = {}
     B = {}
-    for i in range(m+1):
-        for j in range(n+1):
-            key = (i,j)
-            if i == 0 or j == 0:
-                C[key] = 0
-                continue
 
-            if X[i-1] == Y[j-1]:
+    for i in range(m+1):
+        C[(i,0)] = 0
+    for j in range(n+1):
+        C[(0,j)] = 0
+
+    for i in range(1, m+1):
+        for j in range(1, n+1):
+            key = (i,j)
+
+            x = X[i-1]
+            y = Y[j-1]
+            if x == y:
                 C[key] = C[(i-1, j-1)] + 1
                 B[key] = 1
             else:
-                if C[(i, j-1)] < C[(i-1, j)]:
+                # <= 或者用 < 都可以,但是构造出来的子串不同
+                if C[(i, j-1)] <= C[(i-1, j)]:
                     C[key] = C[(i-1, j)]
                     B[key] = 2
                 else:
@@ -47,8 +53,11 @@ def maxSubString(X, Y):
     return C[(m,n)], s[::-1]
 
 
-X = input("input string 1: ")
-Y = input("input string 2: ")
+# X = input("input string 1: ")
+# Y = input("input string 2: ")
+
+X = "ABCBDAB"
+Y = "BDCABA"
 
 d, s = maxSubString(X, Y)
 print(d,s)
