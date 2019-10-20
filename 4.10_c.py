@@ -10,7 +10,7 @@ C = 10
 
 
 P = {}
-P[0] = {(0,0)}
+P[0] = [(0,0)]
 
 for i in range(1, n+1):
     e = (weight[i-1], value[i-1])
@@ -24,20 +24,27 @@ for i in range(1, n+1):
             q.append((a, b))
 
     # 合并 p[i-1] 和 q[i-1] 得到 p[i]
-    P[i] = set()
+    P[i] = []
 
-    for x in q:
-        for y in p:
-            if x[0] >= y[0] and x[1] < y[1]:
-                break
-        else:
-            P[i].add(x)
+    # print("e", e)
+    # print("p", p)
+    # print("q", q)
 
     for x in p:
         for y in q:
             if x[0] >= y[0] and x[1] < y[1]:
+                # print("受控", x, y)
                 break
         else:
-            P[i].add(x)
+            P[i].append(x)
 
-    print(i, sorted(P[i]))
+    for x in q:
+        for y in p:
+            if x[0] >= y[0] and x[1] < y[1]:
+                # print("受控", x, y)
+                break
+        else:
+            P[i].append(x)
+    P[i].sort()
+
+    print(i, P[i])
