@@ -3,38 +3,40 @@
 
 '''
 收集控的决策问题
-自底向上计算
+自底向上
+O(nC)
 '''
+
+def getMaxValue(Num, Capacity, Weight, Value):
+    V = [0] * (Capacity+1)
+    for p in range(1, Capacity+1):
+        maxV = 0
+        for i in range(Num):
+            w = Weight[i]
+            if p >= w:
+                m = V[p-w] + Value[i]
+                maxV = max(maxV, m)
+        V[p] = maxV
+
+    return V[Capacity]
+
 
 n = int(input(""))
 
 for i in range(n):
-    line2 = input("").split()
-    num = int(line2[0])
-    capacity = int(line2[1])
+    line1 = input("").split()
 
-    value = []
+    num = int(line1[0])
+    cap = int(line1[1])
+
+    value  = []
     weight = []
 
+    line2 = input("").split()
     line3 = input("").split()
-    line4 = input("").split()
     for i in range(num):
-        value.append(int(line3[i]))
-        weight.append(int(line4[i]))
+        value.append(int(line2[i]))
+        weight.append(int(line3[i]))
 
-
-#  P[0],...,P[capacity]
-P = [0] * (capacity+1)
-for n in range(1, capacity+1):
-    maxV = 0
-    for i in range(num):
-        w = weight[i]
-        v = value[i]
-        if n >= w:
-            m = P[n-w] + v
-            maxV = max(maxV, m)
-
-    P[n] = maxV
-
-print(P[capacity])
-
+    value = getMaxValue(num, cap, weight, value)
+    print(value)
