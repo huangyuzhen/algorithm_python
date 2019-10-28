@@ -4,57 +4,50 @@
 Dijkstra算法
 '''
 
-INFINITY = 999999
+INF = 999
 
-def Dijkstra(linkMatrix, numV, beginV):
-    visited = [0] * numV
-    preV = {}
-    lowLR = [0] * numV
+def Dijkstra(linkMatrix, beginV = 0):
+    numV = len(linkMatrix)
 
-    visited[beginV] = 1
+    # 1.
+    visited = [0]   * numV
+    lowCost = [INF] * numV
+    closest = [-1]  * numV
 
-    for i in range(numV):
-        lowLR[i] = linkMatrix[beginV][i]
-        preV[i] = beginV
-
-    lowLR[beginV] = 0
-    preV[beginV] = -1
-
+    # 2.
     selectV = beginV
-    for _ in range(1, numV):
-        for j in range(numV):
-            newCost = lowLR[selectV] + linkMatrix[selectV][j]
-            if visited[j] == 0 and newCost < lowLR[j]:
-                lowLR[j] = newCost
-                preV[j] = selectV
+    visited[selectV] = 1
+    closest[selectV] = -1
+    lowCost[selectV] = 0
 
-        minmal = INFINITY
-        for j in range(numV):
-            if visited[j] == 0 and lowLR[j] < minmal:
-                minmal = lowLR[j]
-                selectV = j
+    for _ in range(numV-1):
+        for k in range(numV):
+            newCost = lowCost[selectV] + linkMatrix[selectV][k]
+            if visited[k] == 0 and newCost < lowCost[k]:
+                lowCost[k] = newCost
+                closest[k] = selectV
+
+        mim = INF
+        for k in range(numV):
+            if visited[k] == 0 and lowCost[k] < mim:
+                mim = lowCost[k]
+                selectV = k
 
         visited[selectV] = 1
 
-
-    return lowLR, preV
-
-
+    print(closest)
+    return lowCost
 
 
-
-cost = [
-    [INFINITY, 10, INFINITY, 30, 100],
-    [INFINITY, INFINITY, 50, INFINITY, INFINITY],
-    [INFINITY, INFINITY, INFINITY, INFINITY, 10],
-    [INFINITY, INFINITY, 20, INFINITY, 60],
-    [INFINITY, INFINITY, INFINITY, INFINITY, INFINITY]
+linkMatrix = [
+    [INF, 10, INF, 30, 100],
+    [INF, INF, 50, INF, INF],
+    [INF, INF, INF, INF, 10],
+    [INF, INF, 20, INF, 60],
+    [INF, INF, INF, INF, INF]
 ]
 
 
 
-n = len(cost)
-
-ans, preV = Dijkstra(cost, n, 0)
-print(ans)
-print(preV)
+cost = Dijkstra(linkMatrix, 0)
+print(cost)

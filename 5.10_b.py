@@ -16,6 +16,7 @@ def prim(linkMatrix, beginV = 0):
 
     # 2. beginV起始点
     selectV = beginV
+
     visited[selectV] = 1
     closest[selectV] = -1
     lowCost[selectV] = 0
@@ -23,8 +24,9 @@ def prim(linkMatrix, beginV = 0):
     # 3.
     for _ in range(numV-1):
         for k in range(numV):
-            if visited[k] == 0 and linkMatrix[selectV][k] < lowCost[k]:
-                lowCost[k] = linkMatrix[selectV][k]
+            newCost = linkMatrix[selectV][k]
+            if visited[k] == 0 and newCost < lowCost[k]:
+                lowCost[k] = newCost
                 closest[k] = selectV
 
         mim = INF
