@@ -29,35 +29,40 @@ def Kruskal(nodes, edges):
     forest = DisjointSet(nodes)
     MST = []
 
-    edges.sort(key = lambda e: e[2])
+    edges.sort(key = lambda e: e[1])
     # same as above
-    # edges = sorted(edges, key=lambda element: element[2])
+    # edges = sorted(edges, key=lambda element: element[1])
 
-    num_sides = len(nodes)-1  # 最小生成树的边数等于顶点数减一
+    totalCost = 0
+    cntE = 0
+    numV = len(nodes)-1  # 最小生成树的边数等于顶点数减一
+
     for e in edges:
-        node1, node2, _ = e
-        parent1 = forest.find(node1)
-        parent2 = forest.find(node2)
-        if parent1 != parent2:
+        x, y = e[0][0], e[0][1]
+        fatherX = forest.find(x)
+        fatherY = forest.find(y)
+        if fatherX != fatherY:
             MST.append(e)
-            num_sides -= 1
-            if num_sides == 0:
-                return MST
-            else:
-                forest.unionset(parent1, parent2)
-    pass
+            forest.unionset(fatherX, fatherY)
+
+            totalCost += e[1]
+            cntE +=1
+
+            if cntE == numV:
+                break
+
+    print(MST)
+    return totalCost
 
 def main():
-    nodes = set('ABCDEFG')
-    edges = [("A", "B", 7), ("A", "D", 5),
-             ("B", "C", 8), ("B", "D", 9), ("B", "E", 7),
-             ("C", "E", 5),
-             ("D", "E", 15), ("D", "F", 6),
-             ("E", "F", 8), ("E", "G", 9),
-             ("F", "G", 11)]
+    nodes = 'ABCDEFG'
+    edges = [("AB", 7), ("AD", 5),
+             ("BC", 8), ("BD", 9), ("BE", 7),
+             ("CE", 5),
+             ("DE", 15), ("DF", 6),
+             ("EF", 8), ("EG", 9),
+             ("FG", 11)]
 
-    print("The undirected graph is :", edges)
-    print("\nThe minimum spanning tree by Kruskal is : ")
     print(Kruskal(nodes, edges))
 
 if __name__ == '__main__':
