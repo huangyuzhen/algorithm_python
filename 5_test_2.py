@@ -1,6 +1,7 @@
 from queue import PriorityQueue as PQueue
 
 def chooseApple(numbers):
+    ans = 0
     pq = PQueue()
     for n in numbers:
         pq.put(n)
@@ -9,9 +10,10 @@ def chooseApple(numbers):
         n1 = pq.get()
         n2 = pq.get()
 
+        ans += n1+n2
         pq.put(n1+n2)
 
-    return pq.get()
+    return ans
 
 
 n = int(input())
